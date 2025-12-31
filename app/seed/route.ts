@@ -2,7 +2,10 @@ import bcrypt from 'bcrypt';
 import postgres from 'postgres';
 import { invoices, customers, revenue, users } from '../lib/placeholder-data';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+const sql = postgres("postgresql://nextjs:nextjs@localhost:5432/nextjs-dashboard-postgres");
+//const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+//const sql = postgres("postgresql://nextjs:nextjs@localhost:5432/nextjs-dashboard-postgres", { ssl: 'require' });
+
 
 async function seedUsers() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
