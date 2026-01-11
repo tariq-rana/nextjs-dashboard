@@ -15,6 +15,7 @@ const FormSchema = z.object({
     date: z.string()
 });
 
+
 const CreateInvoice = FormSchema.omit({id: true, date: true});
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
@@ -35,9 +36,10 @@ export async function createInvoice(formData: FormData){
       `;
     } catch(error){
       console.error(error);
-      return {
+     /* return {
         message: 'Database Error: Failed to Create Invoice.',
       };
+      */
     }
 
     revalidatePath('/dashboard/invoices');
@@ -67,7 +69,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 }
 
 export async function deleteInvoice(id: string) {
-  throw new Error('Failed to Delete Invoice');
+  //throw new Error('Failed to Delete Invoice');
 
   await sql`DELETE FROM invoices WHERE id = ${id}`;
   revalidatePath('/dashboard/invoices');
